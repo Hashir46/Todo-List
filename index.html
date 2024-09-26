@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="to-do">
+      <div class="todo">
+        <h1>To-Do List</h1>
+      <input type="text" id="input" />
+      <div id="buttons">
+        <button id="addBtn">Add</button>
+        <button id="deleteBtn">Delete</button>
+      </div>
+      <ul id="listItem"></ul>
+      </div>
+      
+    </div>
+
+    <script>
+      const addBtn = document.getElementById("addBtn");
+      const deleteBtn = document.getElementById("deleteBtn");
+      const input = document.getElementById("input");
+      const listItem = document.getElementById("listItem");
+
+      // Add Button
+      addBtn.addEventListener("click", () => {
+        const text = input.value;
+        const limit = listItem.children.length;
+        if (text === "") {
+          alert("Please enter any text");
+        } else if(limit >= 7){
+          alert("You reached maximum limit!!");
+        }
+        
+        else {
+          let list = document.createElement("li");
+          list.textContent = text;
+          listItem.appendChild(list);
+          input.value = "";
+        }
+      });
+      // Delete Button
+      deleteBtn.addEventListener("click", () => {
+        let lastTask = listItem.lastElementChild;
+        if (lastTask) {
+          listItem.removeChild(lastTask);
+        } else {
+          alert("No text to delete");
+        }
+      });
+    </script>
+  </body>
+</html>
